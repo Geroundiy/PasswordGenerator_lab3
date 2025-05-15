@@ -24,10 +24,10 @@ public class PasswordController {
             @RequestParam String owner) {
 
         if (length < 4 || length > 30) {
-            throw new IllegalArgumentException("Длина пароля должна быть от 4 до 30 символов.");
+            return ResponseEntity.badRequest().body("Ошибка: Длина пароля должна быть от 4 до 30 символов.");
         }
         if (complexity < 1 || complexity > 3) {
-            throw new IllegalArgumentException("Уровень сложности должен быть от 1 до 3.");
+            return ResponseEntity.badRequest().body("Ошибка: Уровень сложности должен быть от 1 до 3.");
         }
 
         String password = passwordService.generatePassword(length, complexity);
